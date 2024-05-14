@@ -1,22 +1,21 @@
 import express from "express";
 
 import cors from "cors";
-import router from "./app/routes/index.js";
-import cookieParser from "cookie-parser";
+import { couponRoutes } from "./app/modules/coupon/coupon.route.js";
 
 const app = express();
 app.use(cors());
-app.use(cookieParser());
+
 // parser
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
 
-app.use("/api/v1", router);
+
+app.use("/api/v1", couponRoutes);
 
 app.get("/", (req, res) => {
   res.status(200).json({
     success: true,
-    message: "Welcome to the DAP API",
+    message: "Welcome to the Promotion API",
   });
 });
 
